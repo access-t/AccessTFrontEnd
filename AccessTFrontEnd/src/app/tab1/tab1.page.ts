@@ -9,4 +9,13 @@ export class Tab1Page {
 
   constructor() {}
 
+  phrases = [{
+    word: "eat",
+    image: "test"
+  },
+  {
+    word: "happy",
+    image: "test"
+  }];
+
 }
