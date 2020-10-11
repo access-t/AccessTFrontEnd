@@ -18,4 +18,10 @@ export class Tab1Page {
     image: "test"
   }];
 
+  getCollection(){
+
+    // return this.httpClient.get('https://cors-anywhere.herokuapp.com/http://augur.osshealth.io:5000/api/unstable/repos');
+
+  }
+
 }

@@ -13,7 +13,7 @@ export class Tab3Page{
 
   constructor( private fb: FormBuilder) {
     this.newCollectionForm = fb.group({
-      phrase: ['', Validators.compose([Validators.required, Validators.maxLength(30), Validators.pattern("^[a-zA-Z0-9 -'?]*$")])]
+      phrase: ['', Validators.compose([Validators.required, Validators.maxLength(50), Validators.pattern("^[a-zA-Z0-9 -'?]*$")])]
       // image: []
     });
   }
