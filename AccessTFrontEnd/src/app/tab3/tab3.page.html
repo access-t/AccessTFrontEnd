@@ -15,7 +15,7 @@
         <ion-input formControlName="phrase" maxlength="30" type="text" required></ion-input>
       </ion-item>
       <div class="error"
-      *ngIf="newCollectionForm.hasError('required', 'phrase') && (pollingForm.controls.phrase.dirty || pollingForm.controls.phrase.touched)">
+      *ngIf="newCollectionForm.hasError('required', 'phrase') && (newCollectionForm.controls.phrase.dirty || newCollectionForm.controls.phrase.touched)">
         <ion-icon name="alert"></ion-icon>
         A word or phrase is required.
       </div>

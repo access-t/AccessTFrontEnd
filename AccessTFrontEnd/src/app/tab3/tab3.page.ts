@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AnyARecord } from 'dns';
+import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-tab3',
@@ -9,10 +9,10 @@ import { AnyARecord } from 'dns';
 })
 export class Tab3Page{
 
-  newCollectionForm:FormGroup;
+  public newCollectionForm:FormGroup;
 
   constructor( private fb: FormBuilder) {
-    this.newCollectionForm = this.fb.group({
+    this.newCollectionForm = fb.group({
       phrase: ['', Validators.compose([Validators.required, Validators.maxLength(30), Validators.pattern("^[a-zA-Z0-9 -'?]*$")])]
       // image: []
     });
