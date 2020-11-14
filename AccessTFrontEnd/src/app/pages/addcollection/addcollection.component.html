@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      New Collection Page
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="goHome()"></ion-back-button>
+   </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-list lines="full">
+    <form [formGroup]="newCollectionForm">
+      <ion-item>
+        <ion-label position="floating">Enter a word or phrase:</ion-label>
+        <ion-input formControlName="phrase" maxlength="30" type="text" required></ion-input>
+      </ion-item>
+      <div class="error"
+        *ngIf="newCollectionForm.hasError('required', 'phrase') && (newCollectionForm.controls.phrase.dirty || newCollectionForm.controls.phrase.touched)">
+        <ion-icon name="alert-circle-outline"></ion-icon>
+        A word or phrase is required.
+      </div>
+      <div class="error"
+        *ngIf="newCollectionForm.hasError('pattern', 'phrase') && (newCollectionForm.controls.phrase.dirty || newCollectionForm.controls.phrase.touched)">
+        <ion-icon name="alert-circle-outline"></ion-icon>
+        The word or phrase can only contain alphanumeric characters, dashes, and underscores.
+      </div>
+      <div class="error"
+        *ngIf="newCollectionForm.controls.phrase.hasError('maxLength', 'phrase') && (newCollectionForm.controls.phrase.dirty || newCollectionForm.controls.phrase.touched)">
+        <ion-icon name="alert-circle-outline"></ion-icon>
+        The word or phrase cannot be longer than 50 characters.
+      </div>
+
+      <ion-item>
+        <ion-item position="floating">Select an Image from your device or Take a Picture</ion-item>
+        <!-- https://devdactic.com/ionic-4-image-upload-storage/ -->
+      </ion-item>
+    </form>
+
+    <ion-button color="tertiary" [disabled]="!newCollectionForm.valid" expand="full" (click)="saveCollection()">Save
+    </ion-button>
+
+  </ion-list>
+
+  <!-- <app-explore-container name="Tab 3 page"></app-explore-container> -->
+</ion-content>
