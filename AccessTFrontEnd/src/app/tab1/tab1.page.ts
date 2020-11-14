@@ -20,6 +20,9 @@ export class Tab1Page {
 
   getCollection(){
 
+    // call text-to-speech API
+    audioClip = this.httpClient.get('https://cors-anywhere.herokuapp.com/');
+
     // return this.httpClient.get('https://cors-anywhere.herokuapp.com/http://augur.osshealth.io:5000/api/unstable/repos');
 
   }
