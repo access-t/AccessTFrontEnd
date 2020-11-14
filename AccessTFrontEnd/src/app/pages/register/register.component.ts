@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -6,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-
-  constructor() { }
+  constructor(public navCtrl: NavController) { }
 
   ngOnInit() {}
 
+  goHome() {
+    this.navCtrl.navigateBack("/tabs/account");
+  }
 }
