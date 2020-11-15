@@ -30,13 +30,16 @@ export class Tab1Page {
     }
 
     //this.speakWord();
+    if (this.loggedIn())
+      this.getCollections();
   }
 
   getCollections() {
-    this.api.login("omerelnour1", "password").subscribe(token => console.log(token));
-    this.api.getCollections().subscribe((result) => {
-      let collections: Collection[] = result["collections"];
+    this.api.getCollections().subscribe((data) => {
+      let collections: Collection[] = data["collections"];
       this.collections = collections;
+    }, err => {
+      // TODO need to refresh token here
     });
   }
 
@@ -50,4 +53,7 @@ export class Tab1Page {
     })
   }
   
+  loggedIn() {
+    return localStorage.getItem("logged_in") === "true";
+  }
 }
