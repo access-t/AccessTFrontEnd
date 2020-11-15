@@ -11,25 +11,24 @@ import Speech from 'speak-tts';
 export class Tab1Page {
   private api: ApiService;
   private collections = [];
-  private speech;
+  private speech: Speech;
 
   constructor(api: ApiService) {
     this.api = api;
     this.getCollections();
     this.speech = new Speech() // will throw an exception if not browser supported
 
-    if(this.speech.hasBrowserSupport()) { // returns a boolean
+    if (this.speech.hasBrowserSupport()) { // returns a boolean
       console.log("speech synthesis supported")
 
       this.speech.init().then((data) => {
-          // The "data" object contains the list of available voices and the voice synthesis params
-          console.log("Speech is ready, voices are available", data)
-        }).catch(e => {
-          console.error("An error occured while initializing : ", e)
+        // The "data" object contains the list of available voices and the voice synthesis params
+        console.log("Speech is ready, voices are available", data)
+      }).catch(e => {
+        console.error("An error occured while initializing : ", e)
       })
     }
 
-    //this.speakWord();
     if (this.loggedIn())
       this.getCollections();
   }
@@ -43,16 +42,16 @@ export class Tab1Page {
     });
   }
 
-  speakWord( phrase: String ){
+  speakWord(phrase: String) {
     this.speech.speak({
-        text: phrase,
+      text: phrase,
     }).then(() => {
-        console.log("Success !")
+      console.log("Success !")
     }).catch(e => {
-        console.error("An error occurred :", e)
+      console.error("An error occurred :", e)
     })
   }
-  
+
   loggedIn() {
     return localStorage.getItem("logged_in") === "true";
   }
