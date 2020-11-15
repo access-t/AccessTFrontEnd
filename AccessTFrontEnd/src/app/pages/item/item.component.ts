@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import { Collection } from 'src/app/types';
 
 @Component({
   selector: 'app-item',
@@ -14,7 +13,8 @@ export class ItemComponent implements OnInit {
   constructor(private navCtrl: NavController, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
+    this.route.queryParams.subscribe(params => {
+      console.log(params);
       this.items = params["items"];
     });
   }

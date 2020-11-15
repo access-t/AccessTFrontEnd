@@ -10,7 +10,7 @@
   <ion-grid>
     <ion-row>
       <ion-col *ngFor="let collection of collections" size-sm="6" size-md="4" size-lg="4" size-xl="3">
-        <ion-card [routerLink]="['/item/collection.name', collection]">
+        <ion-card [routerLink]="['/item/collection.name']" [queryParams]="collection.items">
           <ion-card-header> {{ collection.name }} </ion-card-header>
           <ion-img [src]="'data:image/jpeg;base64, ' + collection.image"></ion-img>
         </ion-card>
