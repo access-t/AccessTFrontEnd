@@ -1,17 +1,17 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      New Collection Page
+      Add Item Page
     </ion-title>
     <ion-buttons slot="start">
-      <ion-back-button (click)="goHome()"></ion-back-button>
+      <ion-back-button (click)="goBack()"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-list lines="full">
-    <form #newCollectionForm="ngForm" (ngSubmit)="saveCollection(newCollectionForm)">
+    <form #newCollectionForm="ngForm" (ngSubmit)="addItem(newCollectionForm)">
       <ion-item>
         <ion-label position="floating">Enter a word or phrase:</ion-label>
         <ion-input name="phrase" [(ngModel)]="phr" #phrase="ngModel" maxlength="30" type="text" required></ion-input>

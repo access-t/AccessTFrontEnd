@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { NavController } from '@ionic/angular';
 import { ApiService } from '../api.service';
+import { PageService } from '../page.service';
 import { Collection } from '../types';
 import Speech from 'speak-tts';
 
@@ -13,7 +15,7 @@ export class Tab1Page {
   private collections = [];
   private speech: Speech;
 
-  constructor(api: ApiService) {
+  constructor(api: ApiService, private page: PageService, private navCtrl: NavController) {
     this.api = api;
     this.getCollections();
     this.speech = new Speech() // will throw an exception if not browser supported
@@ -54,5 +56,10 @@ export class Tab1Page {
 
   loggedIn() {
     return localStorage.getItem("logged_in") === "true";
+  }
+
+  viewCollection(collection) {
+    this.page.pageData = collection;
+    this.navCtrl.navigateForward("/item");
   }
 }

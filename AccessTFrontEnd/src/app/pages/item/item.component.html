@@ -1,0 +1,34 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Home
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="goHome()"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let item of items" size-sm="6" size-md="4" size-lg="4" size-xl="3">
+        <ion-card (click)="speak(item)">
+          <ion-card-header> {{ item.name }} </ion-card-header>
+          <ion-img [src]="'data:image/jpeg;base64, ' + item.image"></ion-img>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <br>
+  <ion-footer>
+    <ion-grid>
+      <ion-row>
+        <ion-col style="text-align: center;" col-4 no-padding>
+          <ion-button (click)="addItem()" color="primary">Add New Item</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-footer>
+</ion-content>
