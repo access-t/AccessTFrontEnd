@@ -6,7 +6,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="auth-form">
+<ion-content *ngIf="!loggedIn()" class="auth-form">
   <ion-grid>
     <ion-row>
       <ion-col align-self-center>
@@ -20,4 +20,12 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+</ion-content>
+
+<ion-content *ngIf="loggedIn()" class="auth-form">
+  <div id="container">
+    <strong>You're currently signed in!</strong>
+    <br>
+    <ion-button (click)="signOut()" color="light">Sign Out</ion-button>
+  </div>
 </ion-content>

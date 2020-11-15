@@ -17,10 +17,13 @@ export class Tab1Page {
   }
 
   getCollections() {
-    this.api.login("omerelnour1", "password").subscribe(token => console.log(token));
     this.api.getCollections().subscribe((result) => {
       let collections: Collection[] = result["collections"];
       this.collections = collections;
     });
+  }
+
+  loggedIn() {
+    return localStorage.getItem("logged_in") === "true";
   }
 }

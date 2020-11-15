@@ -6,7 +6,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content *ngIf="loggedIn()" [fullscreen]="true">
   <ion-grid>
     <ion-row>
       <ion-col *ngFor="let collection of collections" size-sm="6" size-md="4" size-lg="4" size-xl="3">
@@ -28,5 +28,9 @@
       </ion-row>
     </ion-grid>
   </ion-footer>
-  <!-- <app-explore-container name="Tab 1 page"></app-explore-container> -->
+</ion-content>
+
+
+<ion-content *ngIf="!loggedIn()" [fullscreen]="true">
+  <app-explore-container text="No collections yet!" subtext="Please sign in first!"></app-explore-container>
 </ion-content>

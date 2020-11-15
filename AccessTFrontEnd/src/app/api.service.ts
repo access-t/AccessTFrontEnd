@@ -8,8 +8,6 @@ import { Collection } from './types';
   providedIn: 'root'
 })
 export class ApiService {
-  // TODO just enable CORS server-side instead
-  proxyURL = "https://cors-anywhere.herokuapp.com/";
   apiURL = "http://18.218.11.137/";
   endpointRegister = "api/account/create";
   endpointLogin = "api/account/login";
@@ -38,21 +36,21 @@ export class ApiService {
   }
 
   public login(username: string, password: string) {
-    const endpoint = this.proxyURL + this.apiURL + this.endpointLogin;
+    const endpoint = this.apiURL + this.endpointLogin;
     const body = {
       username: username,
       password: password
     };
 
-    return this.http.post(endpoint, body, {})
+    return this.http.post(endpoint, body, {observe: "response"})
       .pipe(
-        catchError(this.handleError),
+        // catchError(this.handleError),
         tap(result => this.setSession(result["access_token"]))
       );
   }
 
   public getCollections() {
-    const endpoint = this.proxyURL + this.apiURL + this.endpointCollections;
+    const endpoint = this.apiURL + this.endpointCollections;
     return this.http.get(endpoint);
   }
 }

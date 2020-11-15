@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { NavController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { ApiService } from 'src/app/api.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { ApiService } from 'src/app/api.service';
 export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
 
-  constructor(public navCtrl: NavController, public api: ApiService, public fb: FormBuilder) {
+  constructor(public navCtrl: NavController, public api: ApiService, public fb: FormBuilder, public alert: AlertController) {
   }
 
   ngOnInit() {
@@ -22,7 +22,24 @@ export class LoginComponent implements OnInit {
   }
 
   login(form) {
-    console.log(form);
+    this.api.login(form.value.user, form.value.pass)
+      .subscribe(
+        data => {
+          localStorage.setItem("id_token", data.body["access_token"]);
+          localStorage.setItem("logged_in", "true");
+          this.navCtrl.navigateBack("/");
+        },
+        err => {
+          if (err.status == 500) {
+            const alert = this.alert.create({
+              header: "Alert",
+              subHeader: "Invalid Login",
+              message: err.error.message,
+              buttons: ["OK"]
+            });
+            alert.then((alert) => alert.present());
+          }
+        });
   }
 
   goHome() {

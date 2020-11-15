@@ -1,5 +1,7 @@
 {
   "name": "AccessTFrontEnd",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
