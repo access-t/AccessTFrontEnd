@@ -1,27 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController, NavController } from '@ionic/angular';
 import { ApiService } from 'src/app/api.service';
+import { PageService } from 'src/app/page.service';
 
 @Component({
-  selector: 'app-addcollection',
-  templateUrl: './addcollection.component.html',
-  styleUrls: ['./addcollection.component.scss'],
+  selector: 'app-add-item',
+  templateUrl: './add-item.component.html',
+  styleUrls: ['./add-item.component.scss'],
 })
-export class AddCollectionComponent implements OnInit {
-  public newCollectionForm: FormGroup;
+export class AddItemComponent implements OnInit {
   private image: ArrayBuffer;
+  private collectionName: string;
+  private items = [];
 
-  constructor(public navCtrl: NavController, public api: ApiService, private alert: AlertController, private fb: FormBuilder) {
-    this.newCollectionForm = fb.group({
-      phrase: ['', Validators.compose([Validators.required, Validators.maxLength(50), Validators.pattern("^[a-zA-Z0-9 -'?]*$")])]
-    });
-  }
+  constructor(private navCtrl: NavController, private api: ApiService, private alert: AlertController, private page: PageService) { }
 
-  ngOnInit() { }
-
-  goHome() {
-    this.navCtrl.navigateBack("/");
+  ngOnInit() {
+    this.collectionName = this.page.pageData["collection_name"];
+    this.items = this.page.pageData["items"].items;
   }
 
   loadImageFromDevice(event) {
@@ -35,13 +31,13 @@ export class AddCollectionComponent implements OnInit {
     };
   };
 
-  saveCollection(form) {
-    this.api.createCollection(form.value.phrase, this.image).subscribe(result => {
+  addItem(form) {
+    this.api.addItem(this.collectionName, form.value.phrase, this.image).subscribe(result => {
       window.location.href = "/";
     }, err => {
       let message = "";
       if (err.status == 500)
-        message = "Error adding collection";
+        message = "Error adding item";
       else
         message = "File too big!";
       const alert = this.alert.create({
@@ -52,5 +48,9 @@ export class AddCollectionComponent implements OnInit {
       });
       alert.then((alert) => alert.present());
     });
+  }
+
+  goBack() {
+    this.navCtrl.navigateBack("/item");
   }
 }

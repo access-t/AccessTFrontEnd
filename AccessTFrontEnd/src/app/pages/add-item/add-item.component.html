@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Add Item Page
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="goBack()"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list lines="full">
+    <form #newCollectionForm="ngForm" (ngSubmit)="addItem(newCollectionForm)">
+      <ion-item>
+        <ion-label position="floating">Enter a word or phrase:</ion-label>
+        <ion-input name="phrase" [(ngModel)]="phr" #phrase="ngModel" maxlength="30" type="text" required></ion-input>
+      </ion-item>
+      <ion-button expand="block" color="light">
+        <ion-icon lazy="true" slot="start" name="image"></ion-icon>
+        <input type="file" (change)="loadImageFromDevice($event)" id="file-input" accept="image/png, image/jpeg"
+          required>
+      </ion-button>
+      <ion-button color="primary" type="submit" [disabled]="!newCollectionForm.form.valid" expand="block">
+        Save
+      </ion-button>
+    </form>
+  </ion-list>
+</ion-content>

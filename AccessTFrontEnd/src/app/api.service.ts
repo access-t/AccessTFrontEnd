@@ -71,4 +71,18 @@ export class ApiService {
       );
     */
   }
+
+  public addItem(collection_name: string, name: string, image: ArrayBuffer) {
+    const endpoint = this.apiURL + this.endpointCollections;
+
+    let formData = new FormData();
+    let blob = new Blob([image], {
+      type: "image/jpeg"
+    });
+    formData.append("collection_name", collection_name);
+    formData.append("name", name);
+    formData.append("image", blob);
+
+    return this.http.put(endpoint, formData, { observe: "response" });
+  }
 }
