@@ -30,7 +30,8 @@
     "cordova-plugin-camera": "^5.0.1",
     "cordova-res": "^0.15.2",
     "native-run": "^1.2.2",
-    "rxjs": "^6.6.3"
+    "rxjs": "^6.6.3",
+    "speak-tts": "^2.0.8"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1100.1",

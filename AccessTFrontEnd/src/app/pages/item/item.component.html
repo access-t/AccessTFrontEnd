@@ -13,7 +13,7 @@
   <ion-grid>
     <ion-row>
       <ion-col *ngFor="let item of items" size-sm="6" size-md="4" size-lg="4" size-xl="3">
-        <ion-card>
+        <ion-card (click)="speak(item)">
           <ion-card-header> {{ item.name }} </ion-card-header>
           <ion-img [src]="'data:image/jpeg;base64, ' + item.image"></ion-img>
         </ion-card>
