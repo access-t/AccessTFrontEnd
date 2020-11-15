@@ -15,7 +15,7 @@ export class ItemComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.items = params["tems"];
+      this.items = params["items"];
     });
   }
 
