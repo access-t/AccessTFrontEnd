@@ -18,8 +18,19 @@ export class ItemComponent implements OnInit {
   ngOnInit() {
     this.items = this.page.pageData["items"];
     this.speech = new Speech();
-    if (this.speech.hasBrowserSupport())
-      this.speech.init({ "voice": "Google US English", "rate": 0.75 }).then(data => console.log(data));
+    //if (this.speech.hasBrowserSupport())
+    //  this.speech.init({ "voice": "Google US English", "rate": 0.75 }).then(data => console.log(data));
+
+    if (this.speech.hasBrowserSupport()) { // returns a boolean
+      console.log("speech synthesis supported")
+
+      this.speech.init().then((data) => {
+        // The "data" object contains the list of available voices and the voice synthesis params
+        console.log("Speech is ready, voices are available", data)
+      }).catch(e => {
+        console.error("An error occured while initializing : ", e)
+      })
+    }
   }
 
   goHome() {
@@ -31,7 +42,13 @@ export class ItemComponent implements OnInit {
     this.navCtrl.navigateForward("/additem");
   }
 
-  speak(item) {
-    this.speech.speak({ text: item.name });
+  speakWord(phrase: String) {
+    this.speech.speak({
+      text: phrase,
+    }).then(() => {
+      console.log("Success !")
+    }).catch(e => {
+      console.error("An error occurred :", e)
+    })
   }
 }

@@ -4,7 +4,15 @@
       Home
     </ion-title>
 
-    <ion-button>test</ion-button>
+   <!-- <ion-item>
+      <ion-label>Voice</ion-label>
+      <ion-select *ngIf="speechData" (change)="setLanguage(value)">
+        <ion-select-option value="i" *ngFor="let voice of speechData.voices;let i = index;">
+          {{voice.name}} - {{voice.lang}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>-->
+
   </ion-toolbar>
 </ion-header>
 
@@ -12,13 +20,8 @@
   <ion-grid>
     <ion-row>
       <ion-col *ngFor="let collection of collections" size-sm="6" size-md="4" size-lg="4" size-xl="3">
-<<<<<<< HEAD
-        <ion-card (click)="speakWord(collection.name)">
-          <ion-card-header> {{collection.name}} </ion-card-header>
-=======
-        <ion-card (click)="viewCollection(collection)">
+        <ion-card (click)="viewCollection(collection)" (click)="speakWord(collection.name)">
           <ion-card-header> {{ collection.name }} </ion-card-header>
->>>>>>> 47f39158071aabd0ca70bbf1e8001687bf215d8e
           <ion-img [src]="'data:image/jpeg;base64, ' + collection.image"></ion-img>
         </ion-card>
       </ion-col>

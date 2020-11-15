@@ -14,6 +14,7 @@ export class Tab1Page {
   private api: ApiService;
   private collections = [];
   private speech: Speech;
+  speechData: any;
 
   constructor(api: ApiService, private page: PageService, private navCtrl: NavController) {
     this.api = api;
@@ -23,9 +24,19 @@ export class Tab1Page {
     if (this.speech.hasBrowserSupport()) { // returns a boolean
       console.log("speech synthesis supported")
 
-      this.speech.init().then((data) => {
+      this.speech.init({
+        listeners: {
+          onvoiceschanged: voices => {
+            console.log("Event voiceschanged", voices);
+          }
+        }
+      }).then((data) => {
         // The "data" object contains the list of available voices and the voice synthesis params
         console.log("Speech is ready, voices are available", data)
+        this.speechData = data;
+          data.voices.forEach(voice => {
+            console.log(voice.name + " " + voice.lang);
+          });
       }).catch(e => {
         console.error("An error occured while initializing : ", e)
       })
@@ -61,5 +72,14 @@ export class Tab1Page {
   viewCollection(collection) {
     this.page.pageData = collection;
     this.navCtrl.navigateForward("/item");
+  }
+
+  setLanguage(i) {
+    console.log(i);
+    console.log(
+      this.speechData.voices[i].lang + this.speechData.voices[i].name
+    );
+    this.speech.setLanguage(this.speechData.voices[i].lang);
+    this.speech.setVoice(this.speechData.voices[i].name);
   }
 }
