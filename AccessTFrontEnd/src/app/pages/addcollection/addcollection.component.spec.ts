@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { AddCollectionComponent } from './addcollection.component';
@@ -10,7 +11,7 @@ describe('AddcollectionComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ AddCollectionComponent ],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot(), FormsModule]
     }).compileComponents();
 
     fixture = TestBed.createComponent(AddCollectionComponent);

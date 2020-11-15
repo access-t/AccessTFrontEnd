@@ -42,7 +42,7 @@ export class ApiService {
       password: password
     };
 
-    return this.http.post(endpoint, body, {observe: "response"})
+    return this.http.post(endpoint, body, { observe: "response" })
       .pipe(
         // catchError(this.handleError),
         tap(result => this.setSession(result["access_token"]))
@@ -52,5 +52,23 @@ export class ApiService {
   public getCollections() {
     const endpoint = this.apiURL + this.endpointCollections;
     return this.http.get(endpoint);
+  }
+
+  public createCollection(name: string, image: ArrayBuffer) {
+    const endpoint = this.apiURL + this.endpointCollections;
+
+    let formData = new FormData();
+    let blob = new Blob([image], {
+      type: "image/jpeg"
+    });
+    formData.append("collection_name", name);
+    formData.append("image", blob);
+
+    return this.http.post(endpoint, formData, { observe: "response" });
+    /*
+      .pipe(
+        catchError(this.handleError),
+      );
+    */
   }
 }

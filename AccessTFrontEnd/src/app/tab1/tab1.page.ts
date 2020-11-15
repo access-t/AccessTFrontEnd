@@ -13,13 +13,16 @@ export class Tab1Page {
 
   constructor(api: ApiService) {
     this.api = api;
-    this.getCollections();
+    if (this.loggedIn())
+      this.getCollections();
   }
 
   getCollections() {
-    this.api.getCollections().subscribe((result) => {
-      let collections: Collection[] = result["collections"];
+    this.api.getCollections().subscribe((data) => {
+      let collections: Collection[] = data["collections"];
       this.collections = collections;
+    }, err => {
+      // TODO need to refresh token here
     });
   }
 

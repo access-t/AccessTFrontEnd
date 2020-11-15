@@ -15,5 +15,7 @@ export class Tab2Page {
   signOut() {
     localStorage.setItem("logged_in", "false");
     localStorage.setItem("id_token", "");
+    localStorage.setItem("username", "");
+    localStorage.setItem("password", "");
   }
 }
