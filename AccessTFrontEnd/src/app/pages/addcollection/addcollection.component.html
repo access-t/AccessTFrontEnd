@@ -5,7 +5,7 @@
     </ion-title>
     <ion-buttons slot="start">
       <ion-back-button (click)="goHome()"></ion-back-button>
-   </ion-buttons>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -18,7 +18,8 @@
       </ion-item>
       <ion-button expand="block" color="light">
         <ion-icon lazy="true" slot="start" name="image"></ion-icon>
-        <input type="file" (change)="loadImageFromDevice($event)" id="file-input" accept="image/png, image/jpeg" required>
+        <input type="file" (change)="loadImageFromDevice($event)" id="file-input" accept="image/png, image/jpeg"
+          required>
       </ion-button>
       <ion-button color="primary" type="submit" [disabled]="!newCollectionForm.form.valid" expand="block">
         Save
