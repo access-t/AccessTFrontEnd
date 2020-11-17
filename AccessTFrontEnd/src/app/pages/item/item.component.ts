@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { PageService } from 'src/app/page.service';
 import { Item } from 'src/app/types';
 import Speech from "speak-tts"
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-item',
@@ -13,7 +14,7 @@ export class ItemComponent implements OnInit {
   private items: Array<Item> = [];
   private speech: Speech;
 
-  constructor(private navCtrl: NavController, private page: PageService) { }
+  constructor(private navCtrl: NavController, private page: PageService, private api: ApiService, private alert: AlertController) { }
 
   ngOnInit() {
     this.items = this.page.pageData["items"];
@@ -31,7 +32,32 @@ export class ItemComponent implements OnInit {
     this.navCtrl.navigateForward("/additem");
   }
 
-  speak(item) {
-    this.speech.speak({ text: item.name });
+  speak(phrase) {
+    this.speech.speak({ text: phrase });
+  }
+
+  delete(item) {
+    const alert = this.alert.create({
+      header: "Delete Item",
+      message: "Are you sure you wish to delete this item?",
+      buttons: [
+        {
+          text: "Cancel",
+          role: "cancel"
+        },
+        {
+          text: "Delete",
+          handler: () => {
+            this.api.delete(this.page.pageData.name, item).subscribe(
+              res => {
+                window.location.href = "/";
+              },
+              err => {
+                console.log(err)
+              });
+          }
+        }]
+    });
+    alert.then((_alert) => _alert.present());
   }
 }

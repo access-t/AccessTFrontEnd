@@ -35,6 +35,23 @@ export class ApiService {
     localStorage.setItem("id_token", authResult);
   }
 
+  public register(firstname: string, lastname: string, email: string, username: string, password: string) {
+    const endpoint = this.apiURL + this.endpointRegister;
+    const body = {
+      first_name: firstname,
+      last_name: lastname,
+      email: email,
+      username: username,
+      password: password
+    };
+
+    return this.http.post(endpoint, body, { observe: "response" })
+      .pipe(
+        // catchError(this.handleError),
+        tap(result => this.setSession(result["access_token"]))
+      );
+  }
+
   public login(username: string, password: string) {
     const endpoint = this.apiURL + this.endpointLogin;
     const body = {
@@ -84,5 +101,18 @@ export class ApiService {
     formData.append("image", blob);
 
     return this.http.put(endpoint, formData, { observe: "response" });
+  }
+
+  public deleteCollection(collection_name: string) {
+    return this.delete(collection_name, "all");
+  }
+
+  public delete(collection_name: string, item_name: string) {
+    const endpoint = this.apiURL + this.endpointCollections;
+    const body = {
+      name: collection_name,
+      item_name: item_name
+    };
+    return this.http.request("DELETE", endpoint, { body: body });
   }
 }

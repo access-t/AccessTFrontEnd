@@ -8,30 +8,36 @@
 </ion-header>
 
 <ion-content>
-  <form>
+  <form #registerForm="ngForm" (ngSubmit)=register(registerForm)>
     <ion-item lines="full">
       <ion-label position="floating">First name</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-input name="firstname" [(ngModel)]="first" #firstname="ngModel" type="text" required></ion-input>
     </ion-item>
 
     <ion-item lines="full">
       <ion-label position="floating">Last name</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-input name="lastname" [(ngModel)]="last" #lastname="ngModel" type="text" required></ion-input>
     </ion-item>
 
     <ion-item lines="full">
       <ion-label position="floating">Email</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-input name="email" [(ngModel)]="email_address" #email="ngModel" type="text" required email></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Username</ion-label>
+      <ion-input name="user" type="text" [(ngModel)]="username" #user="ngModel" required></ion-input>
     </ion-item>
 
     <ion-item lines="full">
       <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" required></ion-input>
+      <ion-input name="pass" type="password" [(ngModel)]="password" #pass="ngModel" required></ion-input>
     </ion-item>
 
     <ion-row>
       <ion-col>
-        <ion-button type="submit" color="primary" expand="block">Sign Up</ion-button>
+        <ion-button [disabled]="!registerForm.form.valid" type="submit" color="primary" expand="block">Sign Up
+        </ion-button>
       </ion-col>
     </ion-row>
   </form>

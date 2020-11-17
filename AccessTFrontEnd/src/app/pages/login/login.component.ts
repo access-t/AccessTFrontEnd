@@ -27,7 +27,18 @@ export class LoginComponent implements OnInit {
         data => {
           localStorage.setItem("id_token", data.body["access_token"]);
           localStorage.setItem("logged_in", "true");
-          this.navCtrl.navigateBack("/");
+          const alert = this.alert.create({
+            header: "Alert",
+            subHeader: "Login successful!",
+            message: "You have been signed in.",
+            buttons: [{
+              text: "OK",
+              handler: () => {
+                alert.then((_alert) => { _alert.dismiss().then(() => window.location.href = "/") });
+              }
+            }]
+          });
+          alert.then((alert) => alert.present());
         },
         err => {
           if (err.status == 500) {

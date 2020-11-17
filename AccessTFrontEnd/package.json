@@ -29,6 +29,7 @@
     "@ionic/cli": "^6.12.1",
     "cordova-plugin-camera": "^5.0.1",
     "cordova-res": "^0.15.2",
+    "hammerjs": "^2.0.8",
     "native-run": "^1.2.2",
     "rxjs": "^6.6.3",
     "speak-tts": "^2.0.8"
@@ -36,6 +37,7 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1100.1",
     "@capacitor/cli": "2.4.2",
+    "@ionic/lab": "3.2.9",
     "cordova-plugin-splashscreen": "^5.0.2"
   },
   "description": "An Ionic project"
