@@ -14,8 +14,12 @@
     <form #newCollectionForm="ngForm" (ngSubmit)="saveCollection(newCollectionForm)">
       <ion-item>
         <ion-label position="floating">Enter a word or phrase:</ion-label>
-        <ion-input name="phrase" [(ngModel)]="phr" #phrase="ngModel" maxlength="30" type="text" required></ion-input>
+        <ion-input name="phrase" [(ngModel)]="phr" #phrase="ngModel" minlength="1" maxlength="45" type="text" required pattern="^[a-zA-Z0–9\s'-.!?]+$"></ion-input>
       </ion-item>
+      <div [hidden]="phrase.untouched || phrase.valid " class="errorMessage alert alert-danger">
+        Phrases can only contain alphanumeric characters, dashes, apostrophes, periods, exclamation points, and question marks 
+      </div>
+      
       <ion-button expand="block" color="light">
         <ion-icon lazy="true" slot="start" name="image"></ion-icon>
         <input type="file" (change)="loadImageFromDevice($event)" id="file-input" accept="image/png, image/jpeg"
