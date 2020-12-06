@@ -3,6 +3,16 @@
     <ion-title>
       Home
     </ion-title>
+
+   <!-- <ion-item>
+      <ion-label>Voice</ion-label>
+      <ion-select *ngIf="speechData" (change)="setLanguage(value)">
+        <ion-select-option value="i" *ngFor="let voice of speechData.voices;let i = index;">
+          {{voice.name}} - {{voice.lang}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>-->
+
   </ion-toolbar>
 </ion-header>
 
