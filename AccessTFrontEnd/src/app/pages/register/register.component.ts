@@ -8,6 +8,12 @@ import { ApiService } from 'src/app/api.service';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
+  username: string;
+  password: string;
+  email_address: string;
+  first: string;
+  last: string;
+
   constructor(public navCtrl: NavController, private api: ApiService, private alert: AlertController) { }
 
   ngOnInit() { }

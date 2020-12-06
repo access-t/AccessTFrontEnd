@@ -10,6 +10,8 @@ import { ApiService } from 'src/app/api.service';
 })
 export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
+  username: string;
+  password: string;
 
   constructor(public navCtrl: NavController, public api: ApiService, public fb: FormBuilder, public alert: AlertController) {
   }

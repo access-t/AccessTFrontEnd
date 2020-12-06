@@ -11,7 +11,7 @@ import { ApiService } from 'src/app/api.service';
   styleUrls: ['./item.component.scss'],
 })
 export class ItemComponent implements OnInit {
-  private items: Array<Item> = [];
+  public items: Array<Item> = [];
   private speech: Speech;
 
   constructor(private navCtrl: NavController, private page: PageService, private api: ApiService, private alert: AlertController) { }

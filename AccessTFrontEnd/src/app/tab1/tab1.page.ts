@@ -12,7 +12,7 @@ import Speech from "speak-tts";
 })
 export class Tab1Page {
   private api: ApiService;
-  private collections = [];
+  public collections = [];
   private speech: Speech;
 
   constructor(api: ApiService, private page: PageService, private navCtrl: NavController, private alert: AlertController) {
