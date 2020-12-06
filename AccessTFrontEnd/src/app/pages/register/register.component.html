@@ -11,28 +11,50 @@
   <form #registerForm="ngForm" (ngSubmit)=register(registerForm)>
     <ion-item lines="full">
       <ion-label position="floating">First name</ion-label>
-      <ion-input name="firstname" [(ngModel)]="first" #firstname="ngModel" type="text" required></ion-input>
+      <ion-input name="firstname" [(ngModel)]="first" #firstname="ngModel" type="text" required minlength="1"
+        maxlength="30" pattern="^[a-zA-Z0–9'-]+$"></ion-input>
     </ion-item>
+    <div [hidden]="firstname.untouched || firstname.valid " class="errorMessage alert alert-danger">
+      A first name is required and can only contain alphabetic characters, dashes, and apostrophes
+    </div>
 
     <ion-item lines="full">
       <ion-label position="floating">Last name</ion-label>
-      <ion-input name="lastname" [(ngModel)]="last" #lastname="ngModel" type="text" required></ion-input>
+      <ion-input name="lastname" [(ngModel)]="last" #lastname="ngModel" type="text" required minlength="1"
+        maxlength="30" pattern="^[a-zA-Z0–9'-]+$"></ion-input>
     </ion-item>
+    <div [hidden]="lastname.untouched || lastname.valid || lastname.pristine" class="errorMessage alert alert-danger">
+      A last name is required and can only contain alphabetic characters, dashes, and apostrophes
+    </div>
 
     <ion-item lines="full">
       <ion-label position="floating">Email</ion-label>
       <ion-input name="email" [(ngModel)]="email_address" #email="ngModel" type="text" required email></ion-input>
     </ion-item>
+    <div [hidden]="email.email || email.untouched || email.valid || email.pristine"
+      class="errorMessage alert alert-danger">
+      Please enter a valid email address
+    </div>
 
     <ion-item lines="full">
       <ion-label position="floating">Username</ion-label>
-      <ion-input name="user" type="text" [(ngModel)]="username" #user="ngModel" required></ion-input>
+      <ion-input name="user" type="text" [(ngModel)]="username" #user="ngModel" required minlength="8" maxlength="30"
+        pattern="^[a-zA-Z0–9_.-]+$"></ion-input>
     </ion-item>
+    <div [hidden]="user.minlength || user.untouched || user.pristine || user.valid"
+      class="errorMessage alert alert-danger">
+      The username must be at least 8 characters, and can only contain alphanumerics, underscores, periods, and dashes
+    </div>
 
     <ion-item lines="full">
       <ion-label position="floating">Password</ion-label>
-      <ion-input name="pass" type="password" [(ngModel)]="password" #pass="ngModel" required></ion-input>
+      <ion-input name="pass" type="text" [(ngModel)]="password" #pass="ngModel" required minlength="8" maxlength="30"
+        pattern="^[a-zA-Z0–9_.-]+$"></ion-input>
     </ion-item>
+    <div [hidden]="pass.minlength || pass.untouched || pass.pristine || pass.valid"
+      class="errorMessage alert alert-danger">
+      The password must be at least 8 characters, and can only contain alphanumerics, underscores, periods, and dashes
+    </div>
 
     <ion-row>
       <ion-col>
