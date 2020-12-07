@@ -11,6 +11,7 @@ import { ApiService } from 'src/app/api.service';
 export class AddCollectionComponent implements OnInit {
   public newCollectionForm: FormGroup;
   private image: ArrayBuffer;
+  phr: string;
 
   constructor(public navCtrl: NavController, public api: ApiService, private alert: AlertController, private fb: FormBuilder) {
     this.newCollectionForm = fb.group({

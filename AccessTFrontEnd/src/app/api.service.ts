@@ -8,7 +8,7 @@ import { Collection } from './types';
   providedIn: 'root'
 })
 export class ApiService {
-  apiURL = "http://18.218.11.137/";
+  apiURL = "https://accesst.name/";
   endpointRegister = "api/account/create";
   endpointLogin = "api/account/login";
   endpointCollections = "api/collections";

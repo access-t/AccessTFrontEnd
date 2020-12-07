@@ -11,7 +11,8 @@ import { PageService } from 'src/app/page.service';
 export class AddItemComponent implements OnInit {
   private image: ArrayBuffer;
   private collectionName: string;
-  private items = [];
+  public items = [];
+  phr: string;
 
   constructor(private navCtrl: NavController, private api: ApiService, private alert: AlertController, private page: PageService) { }
 
