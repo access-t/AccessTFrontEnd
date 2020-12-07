@@ -12,18 +12,18 @@
   <form #loginForm="ngForm" (ngSubmit)=login(loginForm)>
     <ion-item lines="full">
       <ion-label position="floating">Username</ion-label>
-      <ion-input name="user" type="text" [(ngModel)]="username" #user="ngModel" required minlength="8" maxlength="30" pattern="^[a-zA-Z0–9_.-]+$"></ion-input>
+      <ion-input name="user" type="text" [(ngModel)]="username" #user="ngModel" required minlength="8" maxlength="30" pattern="^[a-zA-Z\d\_\.\-\!\?]+$"></ion-input>
     </ion-item>
     <div [hidden]="user.minlength || user.untouched || user.pristine || user.valid" class="errorMessage alert alert-danger">
-      The username must be at least 8 characters, and can only contain alphanumerics, underscores, periods, and dashes
+      The username must be at least 8 characters, and can only contain alphanumerics, underscores, dashes, periods, exclamation points, and question marks
     </div>
 
     <ion-item lines="full">
       <ion-label position="floating">Password</ion-label>
-      <ion-input name="pass" type="password" [(ngModel)]="password" #pass="ngModel" required  minlength="8" maxlength="30" pattern="^[a-zA-Z0–9_.-]+$"></ion-input>
+      <ion-input name="pass" type="password" [(ngModel)]="password" #pass="ngModel" required  minlength="8" maxlength="30" pattern="^[a-zA-Z\d\_\.\-\!\?]+$"></ion-input>
     </ion-item>
     <div [hidden]="pass.minlength || pass.untouched || pass.pristine || pass.valid" class="errorMessage alert alert-danger">
-      The password must be at least 8 characters, and can only contain alphanumerics, underscores, periods, and dashes
+      The password must be at least 8 characters, and can only contain alphanumerics, underscores, dashes, periods, exclamation points, and question marks
     </div>
 
     <ion-row>
