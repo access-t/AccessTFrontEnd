@@ -20,7 +20,7 @@
   <ion-grid>
     <ion-row>
       <ion-col *ngFor="let collection of collections" size-sm="6" size-md="4" size-lg="4" size-xl="3">
-        <ion-card (click)="speak($event, collection.name)" (dblclick)="viewCollection(collection)">
+        <ion-card (click)="speak($event, collection.name)" (click)="viewCollection(collection)">
           <ion-card-header>
             {{ collection.name }}
             <ion-icon (click)="delete(collection)" style="float: right; font-size: 24px;" name="close-circle"></ion-icon>
