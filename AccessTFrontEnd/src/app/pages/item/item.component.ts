@@ -19,8 +19,8 @@ export class ItemComponent implements OnInit {
   ngOnInit() {
     this.items = this.page.pageData["items"];
     this.speech = new Speech();
-    //if (this.speech.hasBrowserSupport())
-    //  this.speech.init({ "voice": "Google US English", "rate": 0.75 }).then(data => console.log(data));
+    if (this.speech.hasBrowserSupport())
+      this.speech.init({ "voice": "Google US English", "rate": 0.75 }).then(data => console.log(data));
 
     if (this.speech.hasBrowserSupport()) { // returns a boolean
       console.log("speech synthesis supported")
